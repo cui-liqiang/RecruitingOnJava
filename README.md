@@ -1,0 +1,1 @@
+Make sure you have local mysql database named "public"

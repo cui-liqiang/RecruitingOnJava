@@ -12,6 +12,8 @@ public class Name {
 
     private String name;
 
+    public Name(){}
+
     public Name(Long id) {
         this.id = id;
     }
