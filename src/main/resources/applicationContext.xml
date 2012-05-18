@@ -18,7 +18,7 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-    <!--<tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>-->
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
@@ -30,6 +30,8 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean class="com.xjtu.domain.User" id="user"/>
 
 
 </beans>
