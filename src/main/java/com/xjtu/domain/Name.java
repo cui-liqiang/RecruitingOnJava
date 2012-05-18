@@ -1,4 +1,4 @@
-package com.cui.domain;
+package com.xjtu.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

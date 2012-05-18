@@ -1,4 +1,4 @@
-package com.cui;
+package com.xjtu;
 
 
 import org.junit.Test;

@@ -1,11 +1,10 @@
-package com.cui.controller;
+package com.xjtu.controller;
 
-import com.cui.dao.NameDao;
-import com.cui.domain.Name;
+import com.xjtu.dao.NameDao;
+import com.xjtu.domain.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 
@@ -14,9 +13,8 @@ public class WelcomeController {
     private NameDao nameDao;
     
     @RequestMapping("/")
-    @ResponseBody
     public String index() {
-        return names();
+        return "index";
     }
 
     private String names() {

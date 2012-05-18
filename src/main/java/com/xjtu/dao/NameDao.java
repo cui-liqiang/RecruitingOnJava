@@ -1,6 +1,6 @@
-package com.cui.dao;
+package com.xjtu.dao;
 
-import com.cui.domain.Name;
+import com.xjtu.domain.Name;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,6 +19,10 @@ public class NameDao  {
     
     public void save(Name name) {
         entityManager.persist(name);
+    }
+
+    public void deleteAll() {
+        entityManager.createQuery("delete from Name").executeUpdate();
     }
 
 }
