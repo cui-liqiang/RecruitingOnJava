@@ -3,34 +3,38 @@ repositories.remote << 'http://repo1.maven.org/maven2'
 VERSION_NUMBER = '1.0'
 
 SPRING = struct(
-  :spring_core => 'org.springframework:spring-core:jar:3.1.1.RELEASE',
-  :spring_context => 'org.springframework:spring-context:jar:3.1.1.RELEASE',
-  :spring_beans => 'org.springframework:spring-beans:jar:3.1.1.RELEASE',
-  :spring_web => 'org.springframework:spring-web:jar:3.1.1.RELEASE',
-  :spring_webmvc => 'org.springframework:spring-webmvc:jar:3.1.1.RELEASE',
-  :spring_tx => 'org.springframework:spring-tx:jar:3.1.1.RELEASE',
-  :spring_orm => 'org.springframework:spring-orm:jar:3.1.1.RELEASE',
-  :spring_test => 'org.springframework:spring-test:jar:3.1.1.RELEASE'
+  :spring_core => transitive('org.springframework:spring-core:jar:3.1.1.RELEASE'),
+  :spring_web => transitive('org.springframework:spring-web:jar:3.1.1.RELEASE'),
+  :spring_webmvc => transitive('org.springframework:spring-webmvc:jar:3.1.1.RELEASE'),
+  :spring_tx => transitive('org.springframework:spring-tx:jar:3.1.1.RELEASE'),
+  :spring_orm => transitive('org.springframework:spring-orm:jar:3.1.1.RELEASE'),
+  :spring_test => transitive('org.springframework:spring-test:jar:3.1.1.RELEASE')
 )
 
 HIBERNATE = struct(
-  :hibernate_core => 'org.hibernate:hibernate-core:jar:4.1.0.Final',
-  :hibernate_jpa => 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:jar:1.0.1.Final',
-  :hibernate_entitymanager => 'org.hibernate:hibernate-entitymanager:jar:4.1.0.Final',
-  :hibernate_validator => 'org.hibernate:hibernate-validator:jar:4.1.0.Final'
+   :hibernate_core => transitive('org.hibernate:hibernate-core:jar:4.1.0.Final'),
+   :hibernate_entitymanager => transitive('org.hibernate:hibernate-entitymanager:jar:4.1.0.Final'),
+   :hibernate_validator => transitive('org.hibernate:hibernate-validator:jar:4.1.0.Final')
 )
 
 DATABASE = struct(
-  :dbcp => 'commons-dbcp:commons-dbcp:jar:1.4',
-  :mysql => 'mysql:mysql-connector-java:jar:5.1.19'
+  :dbcp => transitive('commons-dbcp:commons-dbcp:jar:1.4'),
+  :mysql => transitive('mysql:mysql-connector-java:jar:5.1.19')
 )
 
 TEST = struct(
-  :unit => 'junit:junit:jar:4.10'
+  :unit => transitive('junit:junit:jar:4.10')
 )
 
+SERVLET = struct(
+  :servlet => transitive('javax.servlet:servlet-api:jar:2.5')
+)
 
-define 'spring-hibernate' do
+LOG = struct(
+  :log => transitive('org.slf4j:slf4j-log4j12:jar:1.6.4')
+)
+
+define 'recruiting-idea' do
 
   project.version = VERSION_NUMBER
   compile.options.target = '1.6'
@@ -39,7 +43,9 @@ define 'spring-hibernate' do
     :srping => SPRING,
     :hibernate => HIBERNATE,
     :database => DATABASE,
-    :test => TEST
+    :test => TEST,
+    :servlet => SERVLET,
+    :log => LOG
   )
 
   compile.with WEB_DEPENDENCY
