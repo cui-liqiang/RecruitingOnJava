@@ -1,8 +1,7 @@
 package com.xjtu.domain;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "users")

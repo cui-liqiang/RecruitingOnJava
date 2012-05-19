@@ -1,9 +1,7 @@
 package com.xjtu.dao;
 
-import com.xjtu.domain.Name;
 import com.xjtu.domain.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
