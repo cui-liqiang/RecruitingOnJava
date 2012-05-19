@@ -6,3 +6,4 @@ target/*
 build/*
 out/*
 .idea/*
+reports
