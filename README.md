@@ -1,4 +1,4 @@
-Make sure you have local mysql database named "public"
+Make sure you have local mysql database named "recruiting"
 
 project is managed by maven
 
