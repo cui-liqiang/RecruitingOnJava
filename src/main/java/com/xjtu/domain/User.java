@@ -34,7 +34,7 @@ public class User {
     public User() {
     }
 
-    public User(String university, String name) {
+    public User(String name, String university) {
         this.university = university;
         this.name = name;
     }

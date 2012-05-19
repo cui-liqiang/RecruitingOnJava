@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class WelcomeController {
     @RequestMapping("/")
-    public String index(ModelMap modelMap) {
-        modelMap.put("user", new User());
+    public String index() {
         return "index";
     }
 }

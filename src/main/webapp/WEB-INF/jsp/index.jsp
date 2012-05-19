@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form method="POST" action="/user" commandName="user" >
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<form method="POST" action="/user">
     <table>
         <tr>
-            <td><form:label path="name"/> YOUR NAME</td>
-            <td><form:input path="name"/></td>
-        </tr>                             \
+            <td><label for="name"> YOUR NAME </label></td>
+            <td><input name="name" type="text" id="name"></td>
+        </tr>
         <tr>
-            <td><form:label path="university"/></td>
-            <td><form:input path="university"/></td>
+            <td><label for="university"> University </label></td>
+            <td><input name="university" type="text" id="university"></td>
         </tr>
         <tr>
             <td colspan="2">

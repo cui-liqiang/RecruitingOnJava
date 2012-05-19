@@ -19,9 +19,8 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Test
     public void should_select_all_names() throws Exception {
         userDao.deleteAll();
-        User user = new User("xjty", "wangyan");
+        User user = new User("wangyan", "xjty");
         userDao.save(user);
         assertEquals(1, userDao.all().size());
     }
-
 }
