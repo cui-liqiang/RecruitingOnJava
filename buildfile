@@ -2,13 +2,19 @@ repositories.remote << 'http://repo1.maven.org/maven2'
 
 VERSION_NUMBER = '1.0'
 
+SPRING_VERSION = '3.1.1.RELEASE'
 SPRING = struct(
-  :spring_core => transitive('org.springframework:spring-core:jar:3.1.1.RELEASE'),
-  :spring_web => transitive('org.springframework:spring-web:jar:3.1.1.RELEASE'),
-  :spring_webmvc => transitive('org.springframework:spring-webmvc:jar:3.1.1.RELEASE'),
-  :spring_tx => transitive('org.springframework:spring-tx:jar:3.1.1.RELEASE'),
-  :spring_orm => transitive('org.springframework:spring-orm:jar:3.1.1.RELEASE'),
-  :spring_test => transitive('org.springframework:spring-test:jar:3.1.1.RELEASE')
+    :core => group('spring-core', 'spring-beans', 'spring-context', 'spring-context-support', :under=>"org.springframework", :version=>SPRING_VERSION),
+    :mvc => transitive("org.springframework:spring-webmvc:jar:#{SPRING_VERSION}"),
+    :test => "org.springframework:spring-test:jar:#{SPRING_VERSION}",
+    :jdbc => "org.springframework:spring-jdbc:jar:#{SPRING_VERSION}",
+    :orm => "org.springframework:spring-orm:jar:#{SPRING_VERSION}",
+    :tx => "org.springframework:spring-tx:jar:#{SPRING_VERSION}",
+    :web => "org.springframework:spring-web:jar:#{SPRING_VERSION}"
+)
+
+CGLIB = struct(
+    :core => transitive("cglib:cglib:jar:2.2.2")
 )
 
 HIBERNATE = struct(
@@ -42,6 +48,7 @@ define 'recruiting-idea' do
   WEB_DEPENDENCY = struct(
     :srping => SPRING,
     :hibernate => HIBERNATE,
+    :cglib => CGLIB,
     :database => DATABASE,
     :test => TEST,
     :servlet => SERVLET,
