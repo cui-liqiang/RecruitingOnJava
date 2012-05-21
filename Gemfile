@@ -1,3 +1,11 @@
 source :rubygems
 
-gem 'buildr'
+group(:test) do
+  gem 'buildr'
+  gem 'cucumber'
+  gem 'capybara'
+  gem 'rspec'
+  gem 'sinatra'
+  gem 'ruby-mysql'
+  gem 'json'
+end
