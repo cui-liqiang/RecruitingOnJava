@@ -1,3 +1,6 @@
+require 'buildr/jetty'
+require 'readline'
+
 repositories.remote << 'http://repo1.maven.org/maven2'
 
 VERSION_NUMBER = '1.0'
@@ -37,7 +40,7 @@ SERVLET = struct(
 )
 
 LOG = struct(
-  :log => transitive('org.slf4j:slf4j-log4j12:jar:1.6.4')
+  :log => transitive('org.slf4j:slf4j-log4j12:jar:1.5.6')
 )
 
 define 'recruiting-idea' do
@@ -58,5 +61,10 @@ define 'recruiting-idea' do
   compile.with WEB_DEPENDENCY
   package(:war).with :libs => WEB_DEPENDENCY
   test.using :junit
+
+  task('jetty') do |task|
+    jetty.deploy("http://localhost:8080", package(:war))
+    Readline::readline('[Type ENTER to stop Jetty]')
+  end
 
 end
