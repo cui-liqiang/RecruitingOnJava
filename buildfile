@@ -49,6 +49,10 @@ JETTY_JSP = group('jsp-api-2.1', 'jsp-2.1', :under=> 'org.mortbay.jetty', :versi
 
 define 'app' do
 
+  Dir.chdir PROJECT_ROOT do
+    rm_rf 'target'
+  end
+
   project.version = VERSION_NUMBER
   compile.options.target = '1.6'
 
