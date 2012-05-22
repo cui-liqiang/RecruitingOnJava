@@ -45,7 +45,9 @@ LOG = struct(
   :log => transitive('org.slf4j:slf4j-log4j12:jar:1.5.6')
 )
 
-define 'recruiting-idea' do
+JETTY_JSP = group('jsp-api-2.1', 'jsp-2.1', :under=> 'org.mortbay.jetty', :version=> Buildr::Jetty::VERSION)
+
+define 'app' do
 
   project.version = VERSION_NUMBER
   compile.options.target = '1.6'
@@ -64,8 +66,10 @@ define 'recruiting-idea' do
   package(:war).with :libs => WEB_DEPENDENCY
   test.using :junit
 
-  task('jetty') do |task|
-    jetty.deploy("http://localhost:8080", package(:war))
+  Java.classpath << JETTY_JSP
+
+  task('jetty' => [package(:war), jetty.use]) do |task|
+    jetty.deploy('http://localhost:8080', task.prerequisites.first)
     Readline::readline('[Type ENTER to stop Jetty]')
   end
 
