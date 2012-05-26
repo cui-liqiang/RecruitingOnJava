@@ -7,3 +7,6 @@ build/*
 out/*
 .idea/*
 reports
+src/main/webapp/css/
+src/main/webapp/js/
+src/main/webapp/img/

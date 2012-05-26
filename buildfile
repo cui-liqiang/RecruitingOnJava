@@ -1,3 +1,8 @@
+require 'buildr/jetty'
+require 'readline'
+
+PROJECT_ROOT = File.join(File.dirname(__FILE__), ".")
+
 repositories.remote << 'http://repo1.maven.org/maven2'
 
 VERSION_NUMBER = '1.0'
@@ -37,10 +42,16 @@ SERVLET = struct(
 )
 
 LOG = struct(
-  :log => transitive('org.slf4j:slf4j-log4j12:jar:1.6.4')
+  :log => transitive('org.slf4j:slf4j-log4j12:jar:1.5.6')
 )
 
-define 'recruiting-idea' do
+JETTY_JSP = group('jsp-api-2.1', 'jsp-2.1', :under=> 'org.mortbay.jetty', :version=> Buildr::Jetty::VERSION)
+
+define 'app' do
+
+  Dir.chdir PROJECT_ROOT do
+    rm_rf 'target'
+  end
 
   project.version = VERSION_NUMBER
   compile.options.target = '1.6'
@@ -58,5 +69,23 @@ define 'recruiting-idea' do
   compile.with WEB_DEPENDENCY
   package(:war).with :libs => WEB_DEPENDENCY
   test.using :junit
+
+  Java.classpath << JETTY_JSP
+
+  task('jetty' => [package(:war), jetty.use]) do |task|
+    jetty.deploy('http://localhost:8080', task.prerequisites.first)
+    Readline::readline('[Type ENTER to stop Jetty]')
+  end
+
+  task('asset') do |task|
+    Dir.chdir PROJECT_ROOT do
+      rm_rf 'src/main/webapp/img'
+      rm_rf 'src/main/webapp/css'
+      rm_rf 'src/main/webapp/js'
+      cp_r 'assets/bootstrap/img', 'src/main/webapp/img'
+      cp_r 'assets/bootstrap/css', 'src/main/webapp/css'
+      cp_r 'assets/bootstrap/js', 'src/main/webapp/js'
+    end
+  end
 
 end
