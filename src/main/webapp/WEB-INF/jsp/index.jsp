@@ -1,8 +1,16 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<html>
+<head>
+<link href="/css/bootstrap-responsive.css"  rel="stylesheet"/>
+<link href="/css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
 <form method="POST" action="/user">
     <table>
         <tr>
-            <td><label for="name"> YOUR NAME </label></td>
+            <td><label for="name"> Your Name </label></td>
             <td><input name="name" type="text" id="name"></td>
         </tr>
         <tr>
@@ -15,4 +23,9 @@
             </td>
         </tr>
     </table>
-</form:form>
+</form>
+
+<script src="/js/bootstrap.js"></script>
+<script src="/js/jquery-1.7.2.min.js"></script>
+</body>
+</html>
