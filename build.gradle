@@ -42,7 +42,6 @@ task fullBuild() << {
 
     project.exec {
           workingDir = project.file("acceptance")
-          executable = 'bundle'
-          args =  ['exec', 'cucumber']
+          executable = 'cucumber'
       }
 }
