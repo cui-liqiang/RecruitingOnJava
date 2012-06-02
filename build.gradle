@@ -41,7 +41,18 @@ task fullBuild() << {
     jettyRun.execute()
 
     project.exec {
+          executable = 'gem'
+          args = ['install', 'bundler']
+      }
+
+    project.exec {
+          executable = 'bundle'
+          args = ['install']
+      }
+
+    project.exec {
           workingDir = project.file("acceptance")
-          executable = 'cucumber'
+          executable = 'bundle'
+          args = ['exec', 'cucumber']
       }
 }
