@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="form-actions">
-            <input class="btn btn-primary" type="submit" value="Save Changes" />
+            <input class="btn btn-primary submit" type="submit" value="Save Changes" />
         </div>
     </form>
 

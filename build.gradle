@@ -20,3 +20,24 @@ dependencies {
 [jettyRun]*.with {
     jettyEnvXml = file('src/main/resources/jetty-env.xml')
 }
+
+
+task fullBuild(dependsOn: ['test']) << {
+	if(project.hasProperty('ci')) {
+		project.copy {
+			from('src/main/resources/')
+			into('src/main/resources/')
+			include('applicationContext.ci.xml')
+			rename('applicationContext.ci.xml', 'applicationContext.xml')
+		}
+	}
+
+	jettyRun.daemon = true
+    jettyRun.execute()
+
+    project.exec {
+          workingDir = project.file("acceptance")
+          executable = 'bundle'
+          args =  ['exec', 'cucumber']
+      }
+}
