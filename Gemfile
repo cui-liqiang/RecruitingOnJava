@@ -8,4 +8,5 @@ group(:test) do
   gem 'sinatra'
   gem 'ruby-mysql'
   gem 'json'
+  gem 'capybara-mechanize'
 end

@@ -1,3 +1,4 @@
+@mechanize
 Feature:  As an student
   I want to submit my information
   So that I can let hr know me
