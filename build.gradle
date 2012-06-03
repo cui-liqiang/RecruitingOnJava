@@ -41,13 +41,7 @@ task fullBuild() << {
     jettyRun.execute()
 
     project.exec {
-          executable = 'gem'
-          args = ['install', 'bundler']
-      }
-
-    project.exec {
-          executable = 'bundle'
-          args = ['install']
+          executable = './install-ruby'
       }
 
     project.exec {
