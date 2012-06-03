@@ -43,10 +43,4 @@ task fullBuild() << {
     project.exec {
           executable = './install-ruby'
       }
-
-    project.exec {
-          workingDir = project.file("acceptance")
-          executable = 'bundle'
-          args = ['exec', 'cucumber']
-      }
 }

@@ -5,3 +5,7 @@ RUBY_VERSION=1.8.7-p352 source ./use-ruby
 gem install --conservative bundler
 
 bundle check || bundle install
+
+cd acceptance
+
+bundle exec cucumber
