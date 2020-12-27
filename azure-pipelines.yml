@@ -10,6 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Cache@2
+  inputs:
+    key: 'k1'
+    path: '/home/vsts/.m2'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
